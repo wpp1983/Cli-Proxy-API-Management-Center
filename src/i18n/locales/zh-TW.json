@@ -257,6 +257,9 @@
     "reload_dashboard": "重新載入用量儀表板",
     "open_dashboard": "開啟用量儀表板",
     "dashboard_url": "用量儀表板位址",
+    "save_url": "儲存位址",
+    "empty_title": "尚未設定 Usage Keeper",
+    "empty_desc": "CPA 不再內建持久化用量統計。請先部署 cpa-usage-keeper 或其他相容儀表板，然後在上方填寫它的存取位址。",
     "iframe_title": "CPA Usage Keeper 儀表板"
   },
   "api_keys": {

@@ -257,6 +257,9 @@
     "reload_dashboard": "Reload Usage Dashboard",
     "open_dashboard": "Open Usage Dashboard",
     "dashboard_url": "Usage dashboard URL",
+    "save_url": "Save URL",
+    "empty_title": "Usage Keeper is not configured",
+    "empty_desc": "CPA no longer includes persistent usage statistics. Deploy cpa-usage-keeper or another compatible dashboard, then enter its URL above.",
     "iframe_title": "CPA Usage Keeper Dashboard"
   },
   "api_keys": {
