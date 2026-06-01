@@ -11,6 +11,7 @@ export type VisualConfigFieldPath =
   | 'maxRetryCredentials'
   | 'maxRetryInterval'
   | 'routingFillFirstThresholdPercent'
+  | 'routingCodexQuotaScoreThresholdPercent'
   | 'streaming.keepaliveSeconds'
   | 'streaming.bootstrapRetries'
   | 'streaming.nonstreamKeepaliveInterval';
@@ -81,6 +82,7 @@ export type VisualConfigValues = {
   quotaAntigravityCredits: boolean;
   routingStrategy: 'round-robin' | 'fill-first' | 'codex-quota-score';
   routingFillFirstThresholdPercent: string;
+  routingCodexQuotaScoreThresholdPercent: string;
   routingSessionAffinity: boolean;
   routingSessionAffinityTTL: string;
   wsAuth: boolean;
@@ -123,6 +125,7 @@ export const DEFAULT_VISUAL_VALUES: VisualConfigValues = {
   quotaAntigravityCredits: false,
   routingStrategy: 'round-robin',
   routingFillFirstThresholdPercent: '',
+  routingCodexQuotaScoreThresholdPercent: '',
   routingSessionAffinity: false,
   routingSessionAffinityTTL: '',
   wsAuth: false,

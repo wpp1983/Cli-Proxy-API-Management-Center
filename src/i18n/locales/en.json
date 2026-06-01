@@ -1195,6 +1195,8 @@
           "strategy_codex_quota_score": "Codex Quota Score",
           "fill_first_threshold": "Fill First switch threshold (%)",
           "fill_first_threshold_hint": "Switch to the next Codex credential when a known quota window reaches this used percentage. Empty or 0 disables it.",
+          "codex_quota_score_threshold": "Codex Quota Score switch threshold (%)",
+          "codex_quota_score_threshold_hint": "When using Codex Quota Score, skip credentials whose known quota window reaches this used percentage before ranking by score. Empty or 0 disables it.",
           "session_affinity_ttl": "Session Affinity TTL",
           "force_model_prefix": "Force Model Prefix",
           "force_model_prefix_desc": "Unprefixed model requests only use credentials without prefix",

@@ -216,6 +216,10 @@ export function VisualConfigEditor({
     t,
     validationErrors?.routingFillFirstThresholdPercent
   );
+  const routingCodexQuotaScoreThresholdError = getValidationMessage(
+    t,
+    validationErrors?.routingCodexQuotaScoreThresholdPercent
+  );
   const keepaliveError = getValidationMessage(t, validationErrors?.['streaming.keepaliveSeconds']);
   const bootstrapRetriesError = getValidationMessage(
     t,
@@ -900,6 +904,20 @@ export function VisualConfigEditor({
                   disabled={disabled}
                   hint={t('config_management.visual.sections.network.fill_first_threshold_hint')}
                   error={routingFillFirstThresholdError}
+                />
+                <Input
+                  label={t('config_management.visual.sections.network.codex_quota_score_threshold')}
+                  type="number"
+                  placeholder="90"
+                  value={values.routingCodexQuotaScoreThresholdPercent}
+                  onChange={(e) =>
+                    onChange({ routingCodexQuotaScoreThresholdPercent: e.target.value })
+                  }
+                  disabled={disabled}
+                  hint={t(
+                    'config_management.visual.sections.network.codex_quota_score_threshold_hint'
+                  )}
+                  error={routingCodexQuotaScoreThresholdError}
                 />
                 <Input
                   label={t('config_management.visual.sections.network.session_affinity_ttl')}

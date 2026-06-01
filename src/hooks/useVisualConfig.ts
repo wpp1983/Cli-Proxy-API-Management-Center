@@ -184,6 +184,9 @@ export function getVisualConfigValidationErrors(
     maxRetryCredentials: getNonNegativeIntegerError(values.maxRetryCredentials),
     maxRetryInterval: getNonNegativeIntegerError(values.maxRetryInterval),
     routingFillFirstThresholdPercent: getPercentError(values.routingFillFirstThresholdPercent),
+    routingCodexQuotaScoreThresholdPercent: getPercentError(
+      values.routingCodexQuotaScoreThresholdPercent
+    ),
     'streaming.keepaliveSeconds': getNonNegativeIntegerError(values.streaming.keepaliveSeconds),
     'streaming.bootstrapRetries': getNonNegativeIntegerError(values.streaming.bootstrapRetries),
     'streaming.nonstreamKeepaliveInterval': getNonNegativeIntegerError(
@@ -692,6 +695,13 @@ function getNextDirtyFields(
         baselineValues.routingFillFirstThresholdPercent
     );
   }
+  if (Object.prototype.hasOwnProperty.call(patch, 'routingCodexQuotaScoreThresholdPercent')) {
+    updateDirty(
+      'routingCodexQuotaScoreThresholdPercent',
+      nextValues.routingCodexQuotaScoreThresholdPercent ===
+        baselineValues.routingCodexQuotaScoreThresholdPercent
+    );
+  }
   if (Object.prototype.hasOwnProperty.call(patch, 'routingSessionAffinity')) {
     updateDirty(
       'routingSessionAffinity',
@@ -893,6 +903,11 @@ export function useVisualConfig() {
             routing?.fillFirstThresholdPercent ??
             ''
         ),
+        routingCodexQuotaScoreThresholdPercent: String(
+          routing?.['codex-quota-score-threshold-percent'] ??
+            routing?.codexQuotaScoreThresholdPercent ??
+            ''
+        ),
         routingSessionAffinity: Boolean(
           routing?.['session-affinity'] ??
             routing?.sessionAffinity ??
@@ -1035,6 +1050,7 @@ export function useVisualConfig() {
           docHas(doc, ['routing']) ||
           values.routingStrategy !== 'round-robin' ||
           values.routingFillFirstThresholdPercent.trim() ||
+          values.routingCodexQuotaScoreThresholdPercent.trim() ||
           values.routingSessionAffinity ||
           values.routingSessionAffinityTTL.trim()
         ) {
@@ -1044,6 +1060,11 @@ export function useVisualConfig() {
             doc,
             ['routing', 'fill-first-threshold-percent'],
             values.routingFillFirstThresholdPercent
+          );
+          setFloatFromStringInDoc(
+            doc,
+            ['routing', 'codex-quota-score-threshold-percent'],
+            values.routingCodexQuotaScoreThresholdPercent
           );
           setBooleanInDoc(doc, ['routing', 'session-affinity'], values.routingSessionAffinity);
           setStringInDoc(

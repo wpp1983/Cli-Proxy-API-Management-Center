@@ -1192,6 +1192,8 @@
           "strategy_codex_quota_score": "Оценка квоты Codex",
           "fill_first_threshold": "Порог переключения Fill First (%)",
           "fill_first_threshold_hint": "Переключаться на следующую учётную запись Codex, когда известное окно квоты достигает этого процента использования. Пусто или 0 — отключено.",
+          "codex_quota_score_threshold": "Порог переключения Codex Quota Score (%)",
+          "codex_quota_score_threshold_hint": "При использовании Codex Quota Score сначала пропускать учётные записи, чьё известное окно квоты достигло этого процента использования, затем выбирать по оценке. Пусто или 0 — отключено.",
           "session_affinity_ttl": "TTL привязки сессии",
           "force_model_prefix": "Принудительный префикс модели",
           "force_model_prefix_desc": "Запросы к моделям без префикса используют только учётные данные без префикса",

@@ -1195,6 +1195,8 @@
           "strategy_codex_quota_score": "Codex 配额评分",
           "fill_first_threshold": "Fill First 切换阈值 (%)",
           "fill_first_threshold_hint": "Codex 已知额度窗口达到该使用百分比后切换到下一个凭据；留空或 0 表示禁用。",
+          "codex_quota_score_threshold": "Codex 配额评分切换阈值 (%)",
+          "codex_quota_score_threshold_hint": "使用 Codex 配额评分时，先跳过已知额度窗口达到该使用百分比的凭据，再按评分选择；留空或 0 表示禁用。",
           "session_affinity_ttl": "会话粘性 TTL",
           "force_model_prefix": "强制模型前缀",
           "force_model_prefix_desc": "未带前缀的模型请求只使用无前缀凭据",
