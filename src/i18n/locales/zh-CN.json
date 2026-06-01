@@ -1190,6 +1190,8 @@
           "strategy_round_robin": "轮询 (Round Robin)",
           "strategy_fill_first": "填充优先 (Fill First)",
           "strategy_codex_quota_score": "Codex 配额评分",
+          "fill_first_threshold": "Fill First 切换阈值 (%)",
+          "fill_first_threshold_hint": "Codex 已知额度窗口达到该使用百分比后切换到下一个凭据；留空或 0 表示禁用。",
           "session_affinity_ttl": "会话粘性 TTL",
           "force_model_prefix": "强制模型前缀",
           "force_model_prefix_desc": "未带前缀的模型请求只使用无前缀凭据",
@@ -1286,6 +1288,7 @@
         "validation_blocked": "请先修复表单校验错误再保存",
         "port_range": "请输入 1 到 65535 之间的有效端口",
         "non_negative_integer": "请输入非负整数",
+        "percent_range": "请输入 0 到 100 之间的百分比",
         "payload_invalid_number": "请输入有效数字",
         "payload_invalid_boolean": "请选择 true 或 false",
         "payload_invalid_json": "请输入有效的 JSON"

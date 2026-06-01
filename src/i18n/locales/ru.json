@@ -1187,6 +1187,8 @@
           "strategy_round_robin": "По кругу",
           "strategy_fill_first": "Сначала заполнить",
           "strategy_codex_quota_score": "Оценка квоты Codex",
+          "fill_first_threshold": "Порог переключения Fill First (%)",
+          "fill_first_threshold_hint": "Переключаться на следующую учётную запись Codex, когда известное окно квоты достигает этого процента использования. Пусто или 0 — отключено.",
           "session_affinity_ttl": "TTL привязки сессии",
           "force_model_prefix": "Принудительный префикс модели",
           "force_model_prefix_desc": "Запросы к моделям без префикса используют только учётные данные без префикса",
@@ -1283,6 +1285,7 @@
         "validation_blocked": "Исправьте ошибки валидации перед сохранением",
         "port_range": "Введите корректный порт от 1 до 65535",
         "non_negative_integer": "Введите неотрицательное целое число",
+        "percent_range": "Введите процент от 0 до 100",
         "payload_invalid_number": "Введите корректное число",
         "payload_invalid_boolean": "Выберите true или false",
         "payload_invalid_json": "Введите корректный JSON"

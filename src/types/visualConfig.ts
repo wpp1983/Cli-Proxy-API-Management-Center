@@ -10,11 +10,15 @@ export type VisualConfigFieldPath =
   | 'requestRetry'
   | 'maxRetryCredentials'
   | 'maxRetryInterval'
+  | 'routingFillFirstThresholdPercent'
   | 'streaming.keepaliveSeconds'
   | 'streaming.bootstrapRetries'
   | 'streaming.nonstreamKeepaliveInterval';
 
-export type VisualConfigValidationErrorCode = 'port_range' | 'non_negative_integer';
+export type VisualConfigValidationErrorCode =
+  | 'port_range'
+  | 'non_negative_integer'
+  | 'percent_range';
 
 export type VisualConfigValidationErrors = Partial<
   Record<VisualConfigFieldPath, VisualConfigValidationErrorCode>
@@ -76,6 +80,7 @@ export type VisualConfigValues = {
   quotaSwitchPreviewModel: boolean;
   quotaAntigravityCredits: boolean;
   routingStrategy: 'round-robin' | 'fill-first' | 'codex-quota-score';
+  routingFillFirstThresholdPercent: string;
   routingSessionAffinity: boolean;
   routingSessionAffinityTTL: string;
   wsAuth: boolean;
@@ -117,6 +122,7 @@ export const DEFAULT_VISUAL_VALUES: VisualConfigValues = {
   quotaSwitchPreviewModel: true,
   quotaAntigravityCredits: false,
   routingStrategy: 'round-robin',
+  routingFillFirstThresholdPercent: '',
   routingSessionAffinity: false,
   routingSessionAffinityTTL: '',
   wsAuth: false,
