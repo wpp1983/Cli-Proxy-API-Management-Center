@@ -212,6 +212,14 @@ export function VisualConfigEditor({
   const requestRetryError = getValidationMessage(t, validationErrors?.requestRetry);
   const maxRetryCredentialsError = getValidationMessage(t, validationErrors?.maxRetryCredentials);
   const maxRetryIntervalError = getValidationMessage(t, validationErrors?.maxRetryInterval);
+  const routingFillFirstThresholdError = getValidationMessage(
+    t,
+    validationErrors?.routingFillFirstThresholdPercent
+  );
+  const routingCodexQuotaScoreThresholdError = getValidationMessage(
+    t,
+    validationErrors?.routingCodexQuotaScoreThresholdPercent
+  );
   const keepaliveError = getValidationMessage(t, validationErrors?.['streaming.keepaliveSeconds']);
   const bootstrapRetriesError = getValidationMessage(
     t,
@@ -885,6 +893,32 @@ export function VisualConfigEditor({
                     }
                   />
                 </FieldShell>
+                <Input
+                  label={t('config_management.visual.sections.network.fill_first_threshold')}
+                  type="number"
+                  placeholder="90"
+                  value={values.routingFillFirstThresholdPercent}
+                  onChange={(e) =>
+                    onChange({ routingFillFirstThresholdPercent: e.target.value })
+                  }
+                  disabled={disabled}
+                  hint={t('config_management.visual.sections.network.fill_first_threshold_hint')}
+                  error={routingFillFirstThresholdError}
+                />
+                <Input
+                  label={t('config_management.visual.sections.network.codex_quota_score_threshold')}
+                  type="number"
+                  placeholder="90"
+                  value={values.routingCodexQuotaScoreThresholdPercent}
+                  onChange={(e) =>
+                    onChange({ routingCodexQuotaScoreThresholdPercent: e.target.value })
+                  }
+                  disabled={disabled}
+                  hint={t(
+                    'config_management.visual.sections.network.codex_quota_score_threshold_hint'
+                  )}
+                  error={routingCodexQuotaScoreThresholdError}
+                />
                 <Input
                   label={t('config_management.visual.sections.network.session_affinity_ttl')}
                   placeholder="1h"

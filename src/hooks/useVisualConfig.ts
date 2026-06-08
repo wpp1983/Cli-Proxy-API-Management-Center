@@ -137,11 +137,33 @@ function setIntFromStringInDoc(doc: YamlDocument, path: YamlPath, value: unknown
   }
 }
 
+function setFloatFromStringInDoc(doc: YamlDocument, path: YamlPath, value: unknown): void {
+  const safe = typeof value === 'string' ? value : '';
+  const trimmed = safe.trim();
+  if (trimmed === '') {
+    if (docHas(doc, path)) doc.deleteIn(path);
+    return;
+  }
+
+  const parsed = Number(trimmed);
+  if (Number.isFinite(parsed)) {
+    doc.setIn(path, parsed);
+  }
+}
+
 function getNonNegativeIntegerError(value: string): 'non_negative_integer' | undefined {
   const trimmed = value.trim();
   if (!trimmed) return undefined;
   if (!/^-?\d+$/.test(trimmed)) return 'non_negative_integer';
   return Number(trimmed) >= 0 ? undefined : 'non_negative_integer';
+}
+
+function getPercentError(value: string): 'percent_range' | undefined {
+  const trimmed = value.trim();
+  if (!trimmed) return undefined;
+  if (!/^\d+(\.\d+)?$/.test(trimmed)) return 'percent_range';
+  const parsed = Number(trimmed);
+  return Number.isFinite(parsed) && parsed >= 0 && parsed <= 100 ? undefined : 'percent_range';
 }
 
 function getPortError(value: string): 'port_range' | undefined {
@@ -161,6 +183,10 @@ export function getVisualConfigValidationErrors(
     requestRetry: getNonNegativeIntegerError(values.requestRetry),
     maxRetryCredentials: getNonNegativeIntegerError(values.maxRetryCredentials),
     maxRetryInterval: getNonNegativeIntegerError(values.maxRetryInterval),
+    routingFillFirstThresholdPercent: getPercentError(values.routingFillFirstThresholdPercent),
+    routingCodexQuotaScoreThresholdPercent: getPercentError(
+      values.routingCodexQuotaScoreThresholdPercent
+    ),
     'streaming.keepaliveSeconds': getNonNegativeIntegerError(values.streaming.keepaliveSeconds),
     'streaming.bootstrapRetries': getNonNegativeIntegerError(values.streaming.bootstrapRetries),
     'streaming.nonstreamKeepaliveInterval': getNonNegativeIntegerError(
@@ -662,6 +688,20 @@ function getNextDirtyFields(
   if (Object.prototype.hasOwnProperty.call(patch, 'routingStrategy')) {
     updateDirty('routingStrategy', nextValues.routingStrategy === baselineValues.routingStrategy);
   }
+  if (Object.prototype.hasOwnProperty.call(patch, 'routingFillFirstThresholdPercent')) {
+    updateDirty(
+      'routingFillFirstThresholdPercent',
+      nextValues.routingFillFirstThresholdPercent ===
+        baselineValues.routingFillFirstThresholdPercent
+    );
+  }
+  if (Object.prototype.hasOwnProperty.call(patch, 'routingCodexQuotaScoreThresholdPercent')) {
+    updateDirty(
+      'routingCodexQuotaScoreThresholdPercent',
+      nextValues.routingCodexQuotaScoreThresholdPercent ===
+        baselineValues.routingCodexQuotaScoreThresholdPercent
+    );
+  }
   if (Object.prototype.hasOwnProperty.call(patch, 'routingSessionAffinity')) {
     updateDirty(
       'routingSessionAffinity',
@@ -858,6 +898,16 @@ export function useVisualConfig() {
             : routing?.strategy === 'codex-quota-score'
               ? 'codex-quota-score'
               : 'round-robin',
+        routingFillFirstThresholdPercent: String(
+          routing?.['fill-first-threshold-percent'] ??
+            routing?.fillFirstThresholdPercent ??
+            ''
+        ),
+        routingCodexQuotaScoreThresholdPercent: String(
+          routing?.['codex-quota-score-threshold-percent'] ??
+            routing?.codexQuotaScoreThresholdPercent ??
+            ''
+        ),
         routingSessionAffinity: Boolean(
           routing?.['session-affinity'] ??
             routing?.sessionAffinity ??
@@ -999,11 +1049,23 @@ export function useVisualConfig() {
         if (
           docHas(doc, ['routing']) ||
           values.routingStrategy !== 'round-robin' ||
+          values.routingFillFirstThresholdPercent.trim() ||
+          values.routingCodexQuotaScoreThresholdPercent.trim() ||
           values.routingSessionAffinity ||
           values.routingSessionAffinityTTL.trim()
         ) {
           ensureMapInDoc(doc, ['routing']);
           doc.setIn(['routing', 'strategy'], values.routingStrategy);
+          setFloatFromStringInDoc(
+            doc,
+            ['routing', 'fill-first-threshold-percent'],
+            values.routingFillFirstThresholdPercent
+          );
+          setFloatFromStringInDoc(
+            doc,
+            ['routing', 'codex-quota-score-threshold-percent'],
+            values.routingCodexQuotaScoreThresholdPercent
+          );
           setBooleanInDoc(doc, ['routing', 'session-affinity'], values.routingSessionAffinity);
           setStringInDoc(
             doc,

@@ -257,6 +257,9 @@
     "reload_dashboard": "重新載入用量儀表板",
     "open_dashboard": "開啟用量儀表板",
     "dashboard_url": "用量儀表板位址",
+    "save_url": "儲存位址",
+    "empty_title": "尚未設定 Usage Keeper",
+    "empty_desc": "CPA 不再內建持久化用量統計。請先部署 cpa-usage-keeper 或其他相容儀表板，然後在上方填寫它的存取位址。",
     "iframe_title": "CPA Usage Keeper 儀表板"
   },
   "api_keys": {
@@ -1216,6 +1219,10 @@
           "strategy_round_robin": "輪詢（Round Robin）",
           "strategy_fill_first": "填充優先（Fill First）",
           "strategy_codex_quota_score": "Codex 配額評分",
+          "fill_first_threshold": "Fill First 切換閾值（%）",
+          "fill_first_threshold_hint": "Codex 已知配額視窗達到此使用百分比後切換到下一個憑證；留空或 0 表示停用。",
+          "codex_quota_score_threshold": "Codex 配額評分切換閾值（%）",
+          "codex_quota_score_threshold_hint": "使用 Codex 配額評分時，先跳過已知配額視窗達到此使用百分比的憑證，再依評分選擇；留空或 0 表示停用。",
           "session_affinity_ttl": "會話黏性 TTL",
           "force_model_prefix": "強制模型前綴",
           "force_model_prefix_desc": "未帶前綴的模型請求只使用無前綴憑證",
@@ -1312,6 +1319,7 @@
         "validation_blocked": "請先修復表單驗證錯誤再儲存",
         "port_range": "請輸入 1 到 65535 之間的有效連接埠",
         "non_negative_integer": "請輸入非負整數",
+        "percent_range": "請輸入 0 到 100 之間的百分比",
         "payload_invalid_number": "請輸入有效數字",
         "payload_invalid_boolean": "請選擇 true 或 false",
         "payload_invalid_json": "請輸入有效的 JSON"

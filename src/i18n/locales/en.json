@@ -257,6 +257,9 @@
     "reload_dashboard": "Reload Usage Dashboard",
     "open_dashboard": "Open Usage Dashboard",
     "dashboard_url": "Usage dashboard URL",
+    "save_url": "Save URL",
+    "empty_title": "Usage Keeper is not configured",
+    "empty_desc": "CPA no longer includes persistent usage statistics. Deploy cpa-usage-keeper or another compatible dashboard, then enter its URL above.",
     "iframe_title": "CPA Usage Keeper Dashboard"
   },
   "api_keys": {
@@ -1190,6 +1193,10 @@
           "strategy_round_robin": "Round Robin",
           "strategy_fill_first": "Fill First",
           "strategy_codex_quota_score": "Codex Quota Score",
+          "fill_first_threshold": "Fill First switch threshold (%)",
+          "fill_first_threshold_hint": "Switch to the next Codex credential when a known quota window reaches this used percentage. Empty or 0 disables it.",
+          "codex_quota_score_threshold": "Codex Quota Score switch threshold (%)",
+          "codex_quota_score_threshold_hint": "When using Codex Quota Score, skip credentials whose known quota window reaches this used percentage before ranking by score. Empty or 0 disables it.",
           "session_affinity_ttl": "Session Affinity TTL",
           "force_model_prefix": "Force Model Prefix",
           "force_model_prefix_desc": "Unprefixed model requests only use credentials without prefix",
@@ -1286,6 +1293,7 @@
         "validation_blocked": "Fix validation errors before saving",
         "port_range": "Enter a valid port between 1 and 65535",
         "non_negative_integer": "Enter a non-negative whole number",
+        "percent_range": "Enter a percentage between 0 and 100",
         "payload_invalid_number": "Enter a valid number",
         "payload_invalid_boolean": "Choose true or false",
         "payload_invalid_json": "Enter valid JSON"
